@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}About - Foto-Grafica{% endblock %}
+
+{% block content %}
+<div class="min-h-screen py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16 animate-fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                About <span class="text-yellow-400">Foto-Grafica</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                We are a passionate community of photographers, designers, and creative media enthusiasts 
+                dedicated to capturing the world through our unique perspectives.
+            </p>
+        </div>
+
+        <!-- Mission & Vision -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+            <div class="bg-gradient-to-br from-yellow-900/50 to-yellow-800/50 border border-yellow-500/30 rounded-lg p-8 animate-on-scroll">
+                <div class="flex items-center mb-6">
+                    <i data-lucide="target" class="h-8 w-8 text-yellow-400 mr-3"></i>
+                    <h2 class="text-2xl font-bold text-white">Our Mission</h2>
+                </div>
+                <p class="text-gray-300 leading-relaxed">
+                    {% if content %}
+                        {{ content.content }}
+                    {% else %}
+                        To foster creativity and excellence in photography and design by providing a platform for
+                        learning, collaboration, and artistic expression. We aim to capture life's most beautiful
+                        moments while building a supportive community of creative individuals who inspire each other
+                        to reach new heights.
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="bg-gradient-to-br from-yellow-800/50 to-yellow-900/50 border border-yellow-500/30 rounded-lg p-8 animate-on-scroll">
+                <div class="flex items-center mb-6">
+                    <i data-lucide="eye" class="h-8 w-8 text-yellow-400 mr-3"></i>
+                    <h2 class="text-2xl font-bold text-white">Our Vision</h2>
+                </div>
+                <p class="text-gray-300 leading-relaxed">
+                    To become the premier creative media club known for exceptional photography, innovative 
+                    design, and meaningful storytelling. We envision a future where our work not only captures 
+                    moments but also inspires emotions, tells stories, and creates lasting impact in the 
+                    creative community.
+                </p>
+            </div>
+        </div>
+
+        <!-- What We Do -->
+        <div class="mb-20">
+            <h2 class="text-3xl font-bold text-white text-center mb-12 animate-on-scroll">
+                What We <span class="text-yellow-400">Do</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6 text-center card-hover animate-on-scroll">
+                    <i data-lucide="camera" class="h-12 w-12 text-yellow-400 mx-auto mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-3">Photography</h3>
+                    <p class="text-gray-400">
+                        Professional event coverage, portrait sessions, landscape photography, and artistic compositions 
+                        that tell compelling visual stories.
+                    </p>
+                </div>
+
+                <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6 text-center card-hover animate-on-scroll">
+                    <i data-lucide="lightbulb" class="h-12 w-12 text-yellow-400 mx-auto mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-3">Creative Design</h3>
+                    <p class="text-gray-400">
+                        Graphic design, digital art, photo editing, and creative media production that brings 
+                        ideas to life with stunning visual impact.
+                    </p>
+                </div>
+
+                <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6 text-center card-hover animate-on-scroll">
+                    <i data-lucide="users" class="h-12 w-12 text-yellow-400 mx-auto mb-4"></i>
+                    <h3 class="text-xl font-semibold text-white mb-3">Event Coverage</h3>
+                    <p class="text-gray-400">
+                        Comprehensive documentation of events, workshops, and special occasions with professional 
+                        quality and creative flair.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Our Values -->
+        <div>
+            <h2 class="text-3xl font-bold text-white text-center mb-12 animate-on-scroll">
+                Our <span class="text-yellow-400">Values</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-800/30 border border-gray-700 rounded-lg p-6 card-hover animate-on-scroll">
+                    <div class="flex items-start space-x-4">
+                        <div class="p-3 bg-yellow-500/20 rounded-lg flex-shrink-0">
+                            <i data-lucide="camera" class="h-6 w-6 text-yellow-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-white mb-3">Artistic Excellence</h3>
+                            <p class="text-gray-400 leading-relaxed">We strive for the highest standards in photography and creative media, pushing boundaries and exploring new techniques.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800/30 border border-gray-700 rounded-lg p-6 card-hover animate-on-scroll">
+                    <div class="flex items-start space-x-4">
+                        <div class="p-3 bg-yellow-500/20 rounded-lg flex-shrink-0">
+                            <i data-lucide="users" class="h-6 w-6 text-yellow-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-white mb-3">Community First</h3>
+                            <p class="text-gray-400 leading-relaxed">Building a supportive environment where creativity thrives and every member can grow their skills.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800/30 border border-gray-700 rounded-lg p-6 card-hover animate-on-scroll">
+                    <div class="flex items-start space-x-4">
+                        <div class="p-3 bg-yellow-500/20 rounded-lg flex-shrink-0">
+                            <i data-lucide="lightbulb" class="h-6 w-6 text-yellow-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-white mb-3">Innovation</h3>
+                            <p class="text-gray-400 leading-relaxed">Embracing new technologies and creative approaches to stay at the forefront of visual storytelling.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800/30 border border-gray-700 rounded-lg p-6 card-hover animate-on-scroll">
+                    <div class="flex items-start space-x-4">
+                        <div class="p-3 bg-yellow-500/20 rounded-lg flex-shrink-0">
+                            <i data-lucide="award" class="h-6 w-6 text-yellow-400"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-white mb-3">Recognition</h3>
+                            <p class="text-gray-400 leading-relaxed">Celebrating achievements and providing platforms for our members to showcase their exceptional work.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

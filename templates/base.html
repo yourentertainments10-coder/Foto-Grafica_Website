@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://public-frontend-cos.metadl.com/mgx/img/favicon.png" type="image/png">
+    <title>{% block title %}Foto-Grafica{% endblock %}</title>
+    <meta name="description" content="{% block description %}Foto-Grafica - Where Creativity Meets Excellence{% endblock %}" />
+    <meta name="author" content="Foto-Grafica" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        yellow: {
+                            50: '#fefce8',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gray-900 text-white">
+    <!-- Fixed Navigation -->
+    <nav class="bg-gray-900/95 backdrop-blur-sm border-b border-yellow-800/30 fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                        
+
+                <!-- Logo -->
+                <a href="/" class="flex items-center space-x-2">
+                    <i data-lucide="camera" class="h-8 w-8 text-yellow-500"></i>
+                    <span class="text-xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                        Foto-Grafica
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="nav-link px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                    <a href="/about" class="nav-link px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                    <a href="/events" class="nav-link px-3 py-2 rounded-md text-sm font-medium transition-colors">Events</a>
+                    <a href="/team" class="nav-link px-3 py-2 rounded-md text-sm font-medium transition-colors">Team</a>
+                    <a href="/gallery" class="nav-link px-3 py-2 rounded-md text-sm font-medium transition-colors">Gallery</a>
+                    <a href="/contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                </div>
+
+                <!-- Mobile Navigation Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-white p-2 rounded-md">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-800">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="/" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="/about" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="/events" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium">Events</a>
+                <a href="/team" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium">Team</a>
+                <a href="/gallery" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+                <a href="/contact" class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content with top padding for fixed nav -->
+    <main class="flex-1 pt-16">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 border-t border-yellow-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i data-lucide="camera" class="h-8 w-8 text-yellow-500"></i>
+                        <span class="text-xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+                            Foto-Grafica
+                        </span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Capturing moments, creating memories, and fostering creative talent through photography and design.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-yellow-400 transition-colors">
+                            <i data-lucide="instagram" class="h-5 w-5"></i>
+                        </a>
+                        <a href="/cdn-cgi/l/email-protection#7f19100b1051180d1e19161c1e3f1a071e120f131a511c1012" class="text-gray-400 hover:text-yellow-400 transition-colors">
+                            <i data-lucide="mail" class="h-5 w-5"></i>
+                        </a>
+                        <a href="tel:+15551234567" class="text-gray-400 hover:text-yellow-400 transition-colors">
+                            <i data-lucide="phone" class="h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+                    <div class="space-y-2">
+                        <a href="/" class="block text-gray-400 hover:text-yellow-400 transition-colors" onclick="scrollToTop()">Home</a>
+                        <a href="/about" class="block text-gray-400 hover:text-yellow-400 transition-colors" onclick="scrollToTop()">About</a>
+                        <a href="/events" class="block text-gray-400 hover:text-yellow-400 transition-colors" onclick="scrollToTop()">Events</a>
+                        <a href="/team" class="block text-gray-400 hover:text-yellow-400 transition-colors" onclick="scrollToTop()">Team</a>
+                        <a href="/gallery" class="block text-gray-400 hover:text-yellow-400 transition-colors" onclick="scrollToTop()">Gallery</a>
+                        <a href="/contact" class="block text-gray-400 hover:text-yellow-400 transition-colors" onclick="scrollToTop()">Contact</a>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-white font-semibold mb-4">Contact</h3>
+                    <div class="space-y-2 text-gray-400">
+                        <a href="/cdn-cgi/l/email-protection#96f0f9e2f9b8f1e4f7f0fff5f7d6f3eef7fbe6faf3b8f5f9fb" class="block hover:text-yellow-400 transition-colors">
+                            <span class="__cf_email__" data-cfemail="30565f445f1e57425156595351705548515d405c551e535f5d">[email&#160;protected]</span>
+                        </a>
+                        <a href="tel:+15551234567" class="block hover:text-yellow-400 transition-colors">
+                            +1 (555) 123-4567
+                        </a>
+                        <p>Follow us for updates</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-yellow-800/30 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Foto-Grafica. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

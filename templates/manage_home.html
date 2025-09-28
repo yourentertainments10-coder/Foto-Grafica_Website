@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}Manage Home Content{% endblock %}
+
+{% block content %}
+<div class="min-h-screen py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16 animate-fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Manage <span class="text-yellow-400">Home Content</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Update the hero section, features, and call-to-action for the homepage.
+            </p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} mb-6 p-4 rounded-lg {% if category == 'success' %}bg-green-500/20 border-green-500/30 text-green-300{% else %}bg-red-500/20 border-red-500/30 text-red-300{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Home Content Form -->
+        <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6 mb-12 animate-on-scroll">
+            <h3 class="text-xl font-semibold text-white mb-6">Update Home Content</h3>
+            <form method="POST" id="homeForm">
+                {{ form.hidden_tag() }}
+                <div class="space-y-6">
+                    <div>
+                        {{ form.hero_subtitle.label(class="block text-sm font-medium text-gray-300 mb-2") }}
+                        {{ form.hero_subtitle(class="w-full p-3 border border-gray-600 rounded-lg bg-white text-black focus:ring-2 focus:ring-yellow-500 focus:border-transparent", rows=3) }}
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-4">Features</label>
+                        <div id="features-container" class="space-y-4 mb-4">
+                            {% if features %}
+                                {% for feature in features %}
+                                <div class="feature-block bg-gray-700/50 p-4 rounded-lg border border-gray-600">
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <input type="text" name="feature_title" placeholder="Feature Title" value="{{ feature.title }}" class="p-2 border border-gray-500 rounded bg-white text-black flex-1">
+                                        <textarea name="feature_description" placeholder="Description" rows="2" class="p-2 border border-gray-500 rounded bg-white text-black flex-1 md:col-span-2">{{ feature.description }}</textarea>
+                                    </div>
+                                    <button type="button" class="remove-feature mt-2 text-red-400 hover:text-red-300 text-sm">Remove</button>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="feature-block bg-gray-700/50 p-4 rounded-lg border border-gray-600">
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                        <input type="text" name="feature_title" placeholder="Feature Title" class="p-2 border border-gray-500 rounded bg-white text-black flex-1">
+                                        <textarea name="feature_description" placeholder="Description" rows="2" class="p-2 border border-gray-500 rounded bg-white text-black flex-1 md:col-span-2"></textarea>
+                                    </div>
+                                    <button type="button" class="remove-feature mt-2 text-red-400 hover:text-red-300 text-sm">Remove</button>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <button type="button" id="add-feature" class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded font-semibold">Add Feature</button>
+                        <input type="hidden" name="features" id="features-json" value="{{ form.features.data or '[]' }}">
+                    </div>
+
+                    <div>
+                        {{ form.cta_text.label(class="block text-sm font-medium text-gray-300 mb-2") }}
+                        {{ form.cta_text(class="w-full p-3 border border-gray-600 rounded-lg bg-white text-black focus:ring-2 focus:ring-yellow-500 focus:border-transparent", rows=4) }}
+                    </div>
+
+                    {{ form.submit(class="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-3 rounded-lg font-semibold transition-colors") }}
+                </div>
+            </form>
+        </div>
+
+        <!-- Current Features Preview -->
+        {% if features %}
+        <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6 animate-on-scroll">
+            <h4 class="text-xl font-semibold text-white mb-6">Current Features Preview</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {% for feature in features %}
+                <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6 text-center card-hover">
+                    <div class="flex justify-center mb-4">
+                        <div class="p-3 bg-yellow-500/20 rounded-full">
+                            <i data-lucide="camera" class="h-6 w-6 text-yellow-400"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">{{ feature.title }}</h3>
+                    <p class="text-gray-400">{{ feature.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="text-center mt-12">
+            <a href="{{ url_for('admin') }}" class="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">Back to Admin</a>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const addFeatureBtn = document.getElementById('add-feature');
+    const featuresContainer = document.getElementById('features-container');
+    const featuresJson = document.getElementById('features-json');
+    let featureCount = featuresContainer.querySelectorAll('.feature-block').length;
+
+    addFeatureBtn.addEventListener('click', function() {
+        const newBlock = document.createElement('div');
+        newBlock.className = 'feature-block bg-gray-700/50 p-4 rounded-lg border border-gray-600';
+        newBlock.innerHTML = `
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <input type="text" name="feature_title" placeholder="Feature Title" class="p-2 border border-gray-500 rounded bg-white text-black flex-1">
+                <textarea name="feature_description" placeholder="Description" rows="2" class="p-2 border border-gray-500 rounded bg-white text-black flex-1 md:col-span-2"></textarea>
+            </div>
+            <button type="button" class="remove-feature mt-2 text-red-400 hover:text-red-300 text-sm">Remove</button>
+        `;
+        featuresContainer.appendChild(newBlock);
+        attachRemoveListeners();
+        featureCount++;
+    });
+
+    function attachRemoveListeners() {
+        document.querySelectorAll('.remove-feature').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.closest('.feature-block').remove();
+                updateFeaturesJson();
+            });
+        });
+    }
+
+    function updateFeaturesJson() {
+        const features = [];
+        document.querySelectorAll('.feature-block').forEach(block => {
+            const title = block.querySelector('input[name="feature_title"]').value;
+            const desc = block.querySelector('textarea[name="feature_description"]').value;
+            if (title.trim() || desc.trim()) {
+                features.push({title: title.trim(), description: desc.trim()});
+            }
+        });
+        featuresJson.value = JSON.stringify(features);
+    }
+
+    // Attach initial listeners
+    attachRemoveListeners();
+
+    // Update JSON on input change
+    featuresContainer.addEventListener('input', updateFeaturesJson);
+
+    // Update on form submit
+    document.getElementById('homeForm').addEventListener('submit', updateFeaturesJson);
+});
+</script>
+{% endblock %}

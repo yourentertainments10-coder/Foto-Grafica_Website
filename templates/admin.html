@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - Foto-Grafica{% endblock %}
+
+{% block content %}
+<div class="min-h-screen py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16 animate-fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Admin <span class="text-yellow-400">Dashboard</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Manage all content, events, team, and gallery for Foto-Grafica.
+            </p>
+            <p class="text-lg text-gray-400 mt-2">Welcome, {{ current_user.username }}!</p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="mb-4 p-4 bg-gray-800/50 border border-gray-700 rounded-lg">
+                        <p class="text-{{ 'yellow-400' if category == 'success' else 'red-400' }}">{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Admin Navigation -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <a href="{{ url_for('manage_home') }}" class="admin-card bg-gray-800/50 border border-gray-700 rounded-lg p-6 text-center card-hover animate-on-scroll hover:shadow-yellow-500/20 transition-shadow">
+                <div class="flex justify-center mb-4">
+                    <div class="p-3 bg-yellow-500/20 rounded-full">
+                        <i data-lucide="home" class="h-6 w-6 text-yellow-400"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">Manage Home</h3>
+                <p class="text-gray-400">Edit hero section, features, and CTA on the homepage.</p>
+            </a>
+
+            <a href="{{ url_for('manage_about') }}" class="admin-card bg-gray-800/50 border border-gray-700 rounded-lg p-6 text-center card-hover animate-on-scroll hover:shadow-yellow-500/20 transition-shadow">
+                <div class="flex justify-center mb-4">
+                    <div class="p-3 bg-yellow-500/20 rounded-full">
+                        <i data-lucide="file-text" class="h-6 w-6 text-yellow-400"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">Manage About</h3>
+                <p class="text-gray-400">Edit about page content and mission statement.</p>
+            </a>
+
+            <a href="{{ url_for('manage_events') }}" class="admin-card bg-gray-800/50 border border-gray-700 rounded-lg p-6 text-center card-hover animate-on-scroll hover:shadow-yellow-500/20 transition-shadow">
+                <div class="flex justify-center mb-4">
+                    <div class="p-3 bg-yellow-500/20 rounded-full">
+                        <i data-lucide="calendar" class="h-6 w-6 text-yellow-400"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">Manage Events</h3>
+                <p class="text-gray-400">Add, edit, and delete upcoming and past events.</p>
+            </a>
+
+            <a href="{{ url_for('manage_team') }}" class="admin-card bg-gray-800/50 border border-gray-700 rounded-lg p-6 text-center card-hover animate-on-scroll hover:shadow-yellow-500/20 transition-shadow">
+                <div class="flex justify-center mb-4">
+                    <div class="p-3 bg-yellow-500/20 rounded-full">
+                        <i data-lucide="users" class="h-6 w-6 text-yellow-400"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">Manage Team</h3>
+                <p class="text-gray-400">Add, edit, and manage core team and active members.</p>
+            </a>
+
+            <a href="{{ url_for('manage_gallery') }}" class="admin-card bg-gray-800/50 border border-gray-700 rounded-lg p-6 text-center card-hover animate-on-scroll hover:shadow-yellow-500/20 transition-shadow">
+                <div class="flex justify-center mb-4">
+                    <div class="p-3 bg-yellow-500/20 rounded-full">
+                        <i data-lucide="image" class="h-6 w-6 text-yellow-400"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">Manage Gallery</h3>
+                <p class="text-gray-400">Upload and organize gallery images and categories.</p>
+            </a>
+
+            <a href="{{ url_for('manage_contact') }}" class="admin-card bg-gray-800/50 border border-gray-700 rounded-lg p-6 text-center card-hover animate-on-scroll hover:shadow-yellow-500/20 transition-shadow">
+                <div class="flex justify-center mb-4">
+                    <div class="p-3 bg-yellow-500/20 rounded-full">
+                        <i data-lucide="phone" class="h-6 w-6 text-yellow-400"></i>
+                    </div>
+                </div>
+                <h3 class="text-xl font-semibold text-white mb-2">Manage Contact</h3>
+                <p class="text-gray-400">Edit contact information, social links, and FAQ.</p>
+            </a>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="text-center">
+            <a href="{{ url_for('logout') }}" class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300">Logout</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery - Foto-Grafica{% endblock %}
+
+{% block content %}
+<div class="min-h-screen py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16 animate-fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Our <span class="text-yellow-400">Gallery</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Explore our collection of stunning photographs and creative works. Each image tells a unique story
+                and showcases the talent and creativity of our club members.
+            </p>
+        </div>
+
+
+        <!-- Search and Filter -->
+        <div class="mb-12 animate-on-scroll">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-8">
+                <input type="text" id="gallery-search" placeholder="Search gallery..." class="w-full md:w-96 p-3 border border-gray-600 rounded-lg bg-white text-black focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+                <button onclick="clearSearch()" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-3 rounded-lg font-semibold transition-colors">Clear</button>
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="filterGallery('all')" class="filter-button active btn-secondary">All</button>
+                <button onclick="filterGallery('portrait')" class="filter-button btn-secondary">Portrait</button>
+                <button onclick="filterGallery('landscape')" class="filter-button btn-secondary">Landscape</button>
+                <button onclick="filterGallery('street')" class="filter-button btn-secondary">Street</button>
+                <button onclick="filterGallery('nature')" class="filter-button btn-secondary">Nature</button>
+                <button onclick="filterGallery('events')" class="filter-button btn-secondary">Events</button>
+            </div>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid">
+            <!-- Portrait Photos -->
+            <div class="gallery-item animate-on-scroll" data-category="portrait">
+                <div class="relative group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 'Professional Portrait Session')">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop" 
+                         alt="Professional Portrait Session" class="w-full h-64 object-cover rounded-lg image-hover">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i data-lucide="zoom-in" class="h-8 w-8 mx-auto mb-2"></i>
+                            <p class="font-semibold">Professional Portrait Session</p>
+                            <span class="badge">Portrait</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="portrait">
+                <div class="relative group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1494790108755-2616b612b786?w=800&h=600&fit=crop', 'Creative Portrait Art')">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=300&fit=crop" 
+                         alt="Creative Portrait Art" class="w-full h-64 object-cover rounded-lg image-hover">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i data-lucide="zoom-in" class="h-8 w-8 mx-auto mb-2"></i>
+                            <p class="font-semibold">Creative Portrait Art</p>
+                            <span class="badge">Portrait</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Landscape Photos -->
+            <div class="gallery-item animate-on-scroll" data-category="landscape">
+                <div class="relative group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop', 'Mountain Landscape')">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" 
+                         alt="Mountain Landscape" class="w-full h-64 object-cover rounded-lg image-hover">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i data-lucide="zoom-in" class="h-8 w-8 mx-auto mb-2"></i>
+                            <p class="font-semibold">Mountain Landscape</p>
+                            <span class="badge">Landscape</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="landscape">
+                <div class="relative group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&h=600&fit=crop', 'Sunset Valley')">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400&h=300&fit=crop" 
+                         alt="Sunset Valley" class="w-full h-64 object-cover rounded-lg image-hover">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i data-lucide="zoom-in" class="h-8 w-8 mx-auto mb-2"></i>
+                            <p class="font-semibold">Sunset Valley</p>
+                            <span class="badge">Landscape</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Street Photography -->
+            <div class="gallery-item animate-on-scroll" data-category="street">
+                <div class="relative group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop', 'Urban Life')">
+                    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=300&fit=crop" 
+                         alt="Urban Life" class="w-full h-64 object-cover rounded-lg image-hover">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i data-lucide="zoom-in" class="h-8 w-8 mx-auto mb-2"></i>
+                            <p class="font-semibold">Urban Life</p>
+                            <span class="badge">Street</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="street">
+                <div class="relative group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=600&fit=crop', 'City Architecture')">
+                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=400&h=300&fit=crop" 
+                         alt="City Architecture" class="w-full h-64 object-cover rounded-lg image-hover">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i data-lucide="zoom-in" class="h-8 w-8 mx-auto mb-2"></i>
+                            <p class="font-semibold">City Architecture</p>
+                            <span class="badge">Street</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nature Photos -->
+            <div class="gallery-item animate-on-scroll" data-category="nature">
+                <div class="relative group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop', 'Forest Path')">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop" 
+                         alt="Forest Path" class="w-full h-64 object-cover rounded-lg image-hover">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i data-lucide="zoom-in" class="h-8 w-8 mx-auto mb-2"></i>
+                            <p class="font-semibold">Forest Path</p>
+                            <span class="badge">Nature</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="nature">
+                <div class="relative group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&h=600&fit=crop', 'Starry Night')">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=300&fit=crop" 
+                         alt="Starry Night" class="w-full h-64 object-cover rounded-lg image-hover">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i data-lucide="zoom-in" class="h-8 w-8 mx-auto mb-2"></i>
+                            <p class="font-semibold">Starry Night</p>
+                            <span class="badge">Nature</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Event Photos -->
+            <div class="gallery-item animate-on-scroll" data-category="events">
+                <div class="relative group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&h=600&fit=crop', 'Photography Workshop')">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=400&h=300&fit=crop" 
+                         alt="Photography Workshop" class="w-full h-64 object-cover rounded-lg image-hover">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i data-lucide="zoom-in" class="h-8 w-8 mx-auto mb-2"></i>
+                            <p class="font-semibold">Photography Workshop</p>
+                            <span class="badge">Events</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="events">
+                <div class="relative group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop', 'Club Exhibition')">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop" 
+                         alt="Club Exhibition" class="w-full h-64 object-cover rounded-lg image-hover">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center">
+                        <div class="text-center text-white">
+                            <i data-lucide="zoom-in" class="h-8 w-8 mx-auto mb-2"></i>
+                            <p class="font-semibold">Club Exhibition</p>
+                            <span class="badge">Events</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-12 animate-on-scroll">
+            <button class="btn-secondary">Load More Photos</button>
+        </div>
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div id="image-modal" class="modal">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+        <img id="modal-image" src="" alt="">
+        <div id="modal-caption" class="text-center text-white mt-4 text-lg font-semibold"></div>
+    </div>
+</div>
+{% endblock %}

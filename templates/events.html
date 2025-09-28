@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}Events - Foto-Grafica{% endblock %}
+
+{% block content %}
+<div class="min-h-screen py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16 animate-fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Our <span class="text-yellow-400">Events</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Join us for exciting workshops, competitions, and creative sessions that will enhance your 
+                photography skills and connect you with fellow enthusiasts.
+            </p>
+        </div>
+
+
+        <!-- Events Tabs -->
+        <div class="w-full mb-8">
+            <div class="grid grid-cols-2 bg-gray-800 rounded-lg p-1">
+                <button id="upcoming-tab" class="tab-button active" onclick="switchTab('upcoming')">
+                    Upcoming Events
+                </button>
+                <button id="past-tab" class="tab-button" onclick="switchTab('past')">
+                    Past Events
+                </button>
+            </div>
+        </div>
+
+        <!-- Upcoming Events -->
+        <div id="upcoming-content" class="tab-content">
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                {% for event in events if event.date > current_time %}
+                <div class="bg-gray-800/50 border border-gray-700 rounded-lg overflow-hidden card-hover animate-on-scroll">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1554048612-b6a482b224b1?w=400&h=250&fit=crop" 
+                             alt="{{ event.title }}" class="w-full h-48 object-cover image-hover">
+                        <div class="absolute top-4 right-4">
+                            <span class="badge bg-green-500/20 text-green-400 border-green-500/30">Open</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-3">{{ event.title }}</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="badge">Workshop</span>
+                            <span class="badge">Portrait</span>
+                            <span class="badge">Lighting</span>
+                        </div>
+                        
+                        <p class="text-gray-300 mb-4">{{ event.description }}</p>
+                        
+                        <div class="space-y-2 text-sm mb-4">
+                            <div class="flex items-center text-gray-400">
+                                <i data-lucide="calendar" class="h-4 w-4 mr-2"></i>
+                                {{ event.date.strftime('%A, %B %d, %Y') }}
+                            </div>
+                            <div class="flex items-center text-gray-400">
+                                <i data-lucide="map-pin" class="h-4 w-4 mr-2"></i>
+                                {{ event.location or 'TBD' }}
+                            </div>
+                        </div>
+                        
+                        <button class="btn-primary w-full">Register Now</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Past Events -->
+        <div id="past-content" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+                {% for event in events if event.date <= current_time %}
+                <div class="bg-gray-800/50 border border-gray-700 rounded-lg overflow-hidden card-hover animate-on-scroll">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop" 
+                             alt="{{ event.title }}" class="w-full h-48 object-cover image-hover">
+                        <div class="absolute top-4 right-4">
+                            <span class="badge bg-gray-500/20 text-gray-400 border-gray-500/30">Completed</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-white mb-3">{{ event.title }}</h3>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="badge">Nature</span>
+                            <span class="badge">Landscape</span>
+                            <span class="badge">Wildlife</span>
+                        </div>
+                        
+                        <p class="text-gray-300 mb-4">{{ event.description }}</p>
+                        
+                        <div class="space-y-2 text-sm mb-4">
+                            <div class="flex items-center text-gray-400">
+                                <i data-lucide="calendar" class="h-4 w-4 mr-2"></i>
+                                {{ event.date.strftime('%A, %B %d, %Y') }}
+                            </div>
+                            <div class="flex items-center text-gray-400">
+                                <i data-lucide="map-pin" class="h-4 w-4 mr-2"></i>
+                                {{ event.location or 'TBD' }}
+                            </div>
+                            <div class="flex items-center text-gray-400">
+                                <i data-lucide="users" class="h-4 w-4 mr-2"></i>
+                                Attended
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h4 class="text-white font-semibold mb-2">Event Highlights:</h4>
+                            <ul class="text-sm text-gray-400 space-y-1">
+                                <li class="flex items-center">
+                                    <i data-lucide="award" class="h-3 w-3 mr-2 text-yellow-400"></i>
+                                    Successful event
+                                </li>
+                                <li class="flex items-center">
+                                    <i data-lucide="award" class="h-3 w-3 mr-2 text-yellow-400"></i>
+                                    Great participation
+                                </li>
+                                <li class="flex items-center">
+                                    <i data-lucide="award" class="h-3 w-3 mr-2 text-yellow-400"></i>
+                                    Valuable learning
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

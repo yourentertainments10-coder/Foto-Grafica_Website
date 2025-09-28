@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Team - Foto-Grafica{% endblock %}
+
+{% block content %}
+<div class="min-h-screen py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-16 animate-fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                Meet Our <span class="text-yellow-400">Team</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                The creative minds behind Foto-Grafica. Our diverse team brings together expertise in
+                photography, design, and creative media to create exceptional experiences.
+            </p>
+        </div>
+
+        <!-- Core Team -->
+        <div class="mb-20">
+            <h2 class="text-3xl font-bold text-white text-center mb-12 animate-on-scroll">
+                Core <span class="text-yellow-400">Leadership</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {% for member in core_team %}
+                <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6 card-hover animate-on-scroll">
+                    <div class="text-center mb-4">
+                        <div class="relative mb-4">
+                            <img src="{{ member.image }}" alt="{{ member.name }}" class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-yellow-500/30">
+                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                                <div class="p-2 bg-yellow-500/20 rounded-full border border-yellow-500/30">
+                                    <i data-lucide="users" class="h-4 w-4 text-yellow-400"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3 class="text-xl font-semibold text-white mb-1">{{ member.name }}</h3>
+                        <p class="text-sm font-medium mb-2 text-yellow-400">{{ member.role }}</p>
+                        <span class="badge mb-3">{{ member.specialty }}</span>
+                    </div>
+
+                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">{{ member.bio }}</p>
+
+                    <div class="mb-4">
+                        <h4 class="text-white text-sm font-semibold mb-2">Achievements:</h4>
+                        <div class="space-y-1">
+                            {% set achievements = member.achievements | from_json %}
+                            {% for achievement in achievements %}
+                            <div class="flex items-center text-xs text-gray-400">
+                                <i data-lucide="award" class="h-3 w-3 mr-2 text-yellow-400"></i>
+                                {{ achievement }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center space-x-3">
+                        {% set social = member.social | from_json %}
+                        <a href="{{ social.instagram }}" target="_blank" rel="noopener noreferrer" class="p-2 hover:bg-yellow-500/20 rounded transition-colors">
+                            <i data-lucide="instagram" class="h-4 w-4 text-yellow-400"></i>
+                        </a>
+                        <a href="{{ social.email }}" class="p-2 hover:bg-yellow-500/20 rounded transition-colors">
+                            <i data-lucide="mail" class="h-4 w-4 text-yellow-400"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Active Members -->
+        <div>
+            <h2 class="text-3xl font-bold text-white text-center mb-12 animate-on-scroll">
+                Active <span class="text-yellow-400">Members</span>
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                {% for member in active_members %}
+                <div class="bg-gray-800/30 border border-gray-700 rounded-lg p-4 text-center card-hover animate-on-scroll">
+                    <img src="{{ member.image }}" alt="{{ member.name }}" class="w-16 h-16 rounded-full mx-auto object-cover border-2 border-gray-600 mb-3">
+                    <h3 class="text-white font-semibold text-sm mb-1">{{ member.name }}</h3>
+                    <p class="text-yellow-400 text-xs mb-1">{{ member.role }}</p>
+                    <p class="text-gray-400 text-xs">{{ member.specialty }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Join Us CTA -->
+        <div class="mt-20 text-center animate-on-scroll">
+            <div class="bg-gradient-to-r from-yellow-900/50 to-yellow-800/50 border border-yellow-500/30 rounded-lg p-8 max-w-2xl mx-auto">
+                <h3 class="text-2xl font-bold text-white mb-4">Want to Join Our Team?</h3>
+                <p class="text-gray-300 mb-6">
+                    We're always looking for passionate photographers and creative individuals to join our community.
+                    Whether you're a beginner or experienced, there's a place for you at Foto-Grafica.
+                </p>
+                <button class="btn-primary">Get In Touch</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

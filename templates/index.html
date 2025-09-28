@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Foto-Grafica - Where Creativity Meets Excellence{% endblock %}
+
+{% block content %}
+<div class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-yellow-900 via-gray-900 to-yellow-800 py-20 lg:py-32 overflow-hidden">
+        <div class="absolute inset-0 opacity-20" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'2\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="animate-fade-in">
+                <div class="flex justify-center mb-6">
+                    <div class="flex items-center space-x-2 bg-yellow-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-yellow-500/30">
+                        <i data-lucide="sparkles" class="h-4 w-4 text-yellow-400"></i>
+                        <span class="text-sm text-yellow-300">Where Creativity Meets Excellence</span>
+                    </div>
+                </div>
+                
+                <h1 class="hero-title text-5xl md:text-7xl font-bold mb-6">
+                    <span class="gradient-text">Foto-Grafica</span>
+                </h1>
+                
+                <p class="hero-subtitle text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    {{ hero_subtitle | safe }}
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="/gallery" class="btn-primary flex items-center space-x-2">
+                        <span>Explore Our Work</span>
+                        <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                    </a>
+                    
+                    <a href="/events" class="btn-secondary">See Events</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                    What Makes Us <span class="text-yellow-400">Special</span>
+                </h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                    We're more than just a photography club - we're a community of creative minds pushing the boundaries of visual storytelling.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {% for feature in features %}
+                <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6 text-center card-hover animate-on-scroll">
+                    <div class="flex justify-center mb-4">
+                        <div class="p-3 bg-yellow-500/20 rounded-full">
+                            <i data-lucide="camera" class="h-6 w-6 text-yellow-400"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3">{{ feature.title }}</h3>
+                    <p class="text-gray-400">{{ feature.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-yellow-900 to-yellow-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+                Ready to Join Our Creative Journey?
+            </h2>
+            <p class="text-xl text-yellow-100 mb-8">
+                {{ cta_text | safe }}
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/team" class="bg-white text-yellow-900 hover:bg-gray-100 px-8 py-3 rounded-full font-semibold transition-all duration-300">Meet Our Team</a>
+                <a href="/contact" class="border-2 border-white text-white hover:bg-white/10 px-8 py-3 rounded-full font-semibold transition-all duration-300">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
