@@ -11,8 +11,8 @@ import json
 from datetime import datetime
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'your-secret-key-here'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@dpg-d3dl8lbe5dus73bou7p0-a:5432/fotografica'
+app.config['SECRET_KEY'] = 'secretkey123'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Add custom Jinja filter for from_json
