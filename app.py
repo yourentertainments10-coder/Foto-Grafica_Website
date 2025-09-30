@@ -12,7 +12,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key-here'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root%40123@localhost/foto-grafica'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@dpg-d3dl8lbe5dus73bou7p0-a:5432/fotografica'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Add custom Jinja filter for from_json
