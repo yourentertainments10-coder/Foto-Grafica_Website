@@ -34,6 +34,86 @@ login_manager.login_view = 'login'
 # Create tables if they don't exist
 with app.app_context():
     db.create_all()
+    
+    # Add sample data if not exists
+    if not User.query.filter_by(username='admin').first():
+        admin_user = User(
+            username='admin',
+            email='admin@fotografica.com',
+            password=generate_password_hash('admin123'),
+            is_admin=True
+        )
+        db.session.add(admin_user)
+    
+    if not AboutContent.query.first():
+        about_content = AboutContent(
+            title='Our Mission',
+            content='To foster creativity and excellence in photography and design by providing a platform for learning, collaboration, and artistic expression. We aim to capture life\'s most beautiful moments while building a supportive community of creative individuals who inspire each other to reach new heights.'
+        )
+        db.session.add(about_content)
+    
+    if not Event.query.first():
+        sample_event = Event(
+            title='Photography Workshop',
+            description='Join us for an exciting photography workshop where you can learn new techniques and improve your skills.',
+            date=datetime(2024, 12, 15),
+            location='Community Center',
+            image_path='https://images.unsplash.com/photo-1554048612-b6a1b612b786?w=400&h=250&fit=crop'
+        )
+        db.session.add(sample_event)
+    
+    if not GalleryItem.query.first():
+        sample_gallery = GalleryItem(
+            title='Sunset Portrait',
+            description='A beautiful sunset portrait captured during our last event.',
+            image_path='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop',
+            category='portrait'
+        )
+        db.session.add(sample_gallery)
+    
+    if not HomeContent.query.first():
+        home_content = HomeContent(
+            hero_subtitle="Capturing moments, creating memories, and fostering creative talent through photography, design, and creative media.",
+            features='[{"title": "Photography Excellence", "description": "Capturing life\'s most beautiful moments with artistic vision and technical precision."}, {"title": "Creative Community", "description": "A diverse team of passionate photographers and creative media enthusiasts."}, {"title": "Exciting Events", "description": "Regular workshops, competitions, and collaborative projects to enhance skills."}, {"title": "Recognition & Growth", "description": "Showcasing talent and providing opportunities for creative development."}]',
+            cta_text="Discover amazing events, connect with talented individuals, and showcase your creative work."
+        )
+        db.session.add(home_content)
+    
+    if not TeamMember.query.filter_by(is_core=True).first():
+        core_members = [
+            TeamMember(name='Alex Rodriguez', role='Club President', specialty='Portrait & Event Photography', bio='Leading the club with 5+ years of photography experience. Specializes in capturing emotions and storytelling through portraits.', achievements='["Best Portrait 2024", "Event Photographer of the Year"]', image='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face', social='{"instagram": "https://instagram.com/alex", "email": "alex@fotografica.com"}', is_core=True),
+            TeamMember(name='Maya Chen', role='Creative Director', specialty='Digital Art & Design', bio='Passionate about blending photography with digital art. Creates stunning visual compositions and manages our creative projects.', achievements='["Digital Artist Award 2024", "Creative Innovation Prize"]', image='https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face', social='{"instagram": "https://instagram.com/maya", "email": "maya@fotografica.com"}', is_core=True),
+            TeamMember(name='James Wilson', role='Technical Lead', specialty='Equipment & Post-Processing', bio='Expert in camera equipment and advanced post-processing techniques. Conducts technical workshops and equipment training.', achievements='["Technical Excellence Award", "Workshop Leader 2024"]', image='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face', social='{"instagram": "https://instagram.com/james", "email": "james@fotografica.com"}', is_core=True),
+            TeamMember(name='Sofia Martinez', role='Events Coordinator', specialty='Event Management & Documentation', bio='Organizes all club events and ensures seamless execution. Expert in event photography and community building.', achievements='["Event Excellence Award", "Community Builder 2024"]', image='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face', social='{"instagram": "https://instagram.com/sofia", "email": "sofia@fotografica.com"}', is_core=True)
+        ]
+        for member in core_members:
+            db.session.add(member)
+    
+    if not TeamMember.query.filter_by(is_core=False).first():
+        active_members = [
+            TeamMember(name='David Kim', role='Senior Member', specialty='Landscape Photography', bio='Passionate landscape photographer capturing nature\'s beauty.', achievements='[]', image='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face', social='{"instagram": "https://instagram.com/david", "email": "david@fotografica.com"}', is_core=False),
+            TeamMember(name='Emma Thompson', role='Senior Member', specialty='Fashion Photography', bio='Specializes in fashion and portrait photography.', achievements='[]', image='https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face', social='{"instagram": "https://instagram.com/emma", "email": "emma@fotografica.com"}', is_core=False),
+            TeamMember(name='Ryan Patel', role='Active Member', specialty='Street Photography', bio='Capturing urban life and candid moments.', achievements='[]', image='https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=200&h=200&fit=crop&crop=face', social='{"instagram": "https://instagram.com/ryan", "email": "ryan@fotografica.com"}', is_core=False),
+            TeamMember(name='Lisa Zhang', role='Active Member', specialty='Macro Photography', bio='Exploring the tiny details in nature and everyday objects.', achievements='[]', image='https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200&h=200&fit=crop&crop=face', social='{"instagram": "https://instagram.com/lisa", "email": "lisa@fotografica.com"}', is_core=False),
+            TeamMember(name='Michael Brown', role='Active Member', specialty='Documentary Photography', bio='Telling stories through visual narratives.', achievements='[]', image='https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=face', social='{"instagram": "https://instagram.com/michael", "email": "michael@fotografica.com"}', is_core=False),
+            TeamMember(name='Aria Johnson', role='Active Member', specialty='Abstract Art', bio='Creating artistic interpretations through photography.', achievements='[]', image='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face', social='{"instagram": "https://instagram.com/aria", "email": "aria@fotografica.com"}', is_core=False)
+        ]
+        for member in active_members:
+            db.session.add(member)
+    
+    if not ContactInfo.query.first():
+        contact_info = ContactInfo(
+            email='foto.grafica@example.com',
+            phone='+1 (555) 123-4567',
+            phone_hours='Mon-Fri, 9AM-6PM PST',
+            address='{"line1": "Creative Arts Center", "line2": "123 Photography Lane", "city": "San Francisco", "state": "CA", "zip": "94102"}',
+            office_hours='{"weekdays": "Monday - Friday: 9:00 AM - 6:00 PM", "weekend": "Saturday: 10:00 AM - 4:00 PM", "closed": "Sunday: Closed"}',
+            social_links='{"instagram": "https://instagram.com/fotografica", "facebook": "https://facebook.com/fotografica", "twitter": "https://twitter.com/fotografica", "instagram_handle": "@fotografica"}',
+            faq='[{"question": "How can I join the club?", "answer": "Simply contact us through the form or email. We welcome photographers of all skill levels!"}, {"question": "Do you offer photography services?", "answer": "Yes! We provide professional photography services for events, portraits, and commercial projects."}, {"question": "What equipment do I need?", "answer": "Any camera works! We focus on creativity and technique rather than expensive equipment."}]'
+        )
+        db.session.add(contact_info)
+    
+    db.session.commit()
 
 # Database Models
 class User(UserMixin, db.Model):
