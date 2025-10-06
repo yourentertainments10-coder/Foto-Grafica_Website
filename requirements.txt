@@ -9,4 +9,4 @@ SQLAlchemy
 tika
 spacy
 cryptography
-pymysql
+psycopg2-binary>=2.9.9

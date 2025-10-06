@@ -9,13 +9,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 import json
 from datetime import datetime
-import pymysql
-
-pymysql.install_as_MySQLdb()
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secretkey123'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root%40123@localhost/foto-grafica'
+import os
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "postgresql://fotografica_user:iGbw7h5dEDq6kEP612pYS88x4zTw6Ufi@dpg-d3dl8lbe5dus73bou7p0-a.render.com:5432/fotografica")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Add custom Jinja filter for from_json
