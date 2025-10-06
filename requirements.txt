@@ -10,3 +10,4 @@ tika
 spacy
 cryptography
 psycopg2-binary>=2.9.9
+python-dotenv

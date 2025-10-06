@@ -1,3 +1,3 @@
 - [x] Update requirements.txt to remove pymysql and ensure psycopg2-binary for PostgreSQL
 - [x] Update app.py to use DATABASE_URL environment variable and remove MySQL-specific code
-- [x] Add PostgreSQL connection string as default DATABASE_URL
+- [x] Create .env file with PostgreSQL connection string and connect to app.py
