@@ -31,10 +31,6 @@ migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
-# Create tables if they don't exist
-with app.app_context():
-    db.create_all()
-
 # Database Models
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -98,6 +94,10 @@ class ContactInfo(db.Model):
     social_links = db.Column(db.Text, nullable=False)  # JSON string
     faq = db.Column(db.Text, nullable=False)  # JSON string
     updated_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+# Create tables if they don't exist
+with app.app_context():
+    db.create_all()
 
 @login_manager.user_loader
 def load_user(user_id):
