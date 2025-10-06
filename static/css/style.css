@@ -11,7 +11,7 @@
 }
 
 .nav-link.active {
-    color: #fbbf24; /* yellow-400 */
+    color: #e2eb37; /* yellow-400 */
     background-color: rgba(251, 191, 36, 0.1); /* yellow-500/10 */
 }
 
@@ -25,7 +25,7 @@
 }
 
 .mobile-nav-link.active {
-    color: #fbbf24; /* yellow-400 */
+    color: #e2eb37; /* yellow-400 */
     background-color: rgba(251, 191, 36, 0.1); /* yellow-500/10 */
 }
 
@@ -35,32 +35,15 @@ html {
 }
 
 /* Custom animations */
-.animate-fade-in {
-    animation: fadeIn 0.7s ease-in-out;
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
 }
 
 .animate-slide-up {
-    animation: slideUp 0.7s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Gradient text */
@@ -92,7 +75,7 @@ html {
 
 /* Button styles */
 .btn-primary {
-    background: linear-gradient(to right, #d97706, #ea580c);
+    background: linear-gradient(to right, #e2eb37, #ea580c);
     color: white;
     padding: 0.75rem 2rem;
     border-radius: 9999px;
@@ -142,19 +125,19 @@ html {
     border-radius: 0.5rem;
     font-weight: 500;
     transition: all 0.3s ease;
-    background: #374151;
+    background: linear-gradient(135deg, #FFFF99, #FF8C00, #000000);
     color: #d1d5db;
     border: none;
     cursor: pointer;
 }
 
 .tab-button.active {
-    background: #d97706;
+    background: linear-gradient(135deg, #FFFF99, #FF8C00, #000000);
     color: white;
 }
 
 .tab-button:hover:not(.active) {
-    background: #4b5563;
+    background: linear-gradient(135deg, #FFCC33, #FF6600, #000000);
     color: white;
 }
 
@@ -162,25 +145,25 @@ html {
 .form-input {
     width: 100%;
     padding: 0.75rem 1rem;
-    border: 1px solid #4b5563;
+    border: 1px solid #FF8C00;
     border-radius: 0.5rem;
-    background: #374151;
+    background: linear-gradient(135deg, #FFFF99, #FF8C00, #000000);
     color: white;
     transition: all 0.3s ease;
 }
 
 .form-input:focus {
     outline: none;
-    border-color: #fbbf24;
-    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+    border-color: #FFCC33;
+    box-shadow: 0 0 0 3px rgba(255, 204, 51, 0.1);
 }
 
 .form-textarea {
     width: 100%;
     padding: 0.75rem 1rem;
-    border: 1px solid #4b5563;
+    border: 1px solid #FF8C00;
     border-radius: 0.5rem;
-    background: #374151;
+    background: linear-gradient(135deg, #FFFF99, #FF8C00, #000000);
     color: white;
     min-height: 120px;
     resize: vertical;
@@ -189,8 +172,8 @@ html {
 
 .form-textarea:focus {
     outline: none;
-    border-color: #fbbf24;
-    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+    border-color: #FFCC33;
+    box-shadow: 0 0 0 3px rgba(255, 204, 51, 0.1);
 }
 
 /* Text input for admin forms */
@@ -201,16 +184,16 @@ html {
 
 /* Card backgrounds and image fallbacks */
 .card {
-    background-color: #1f2937 !important; /* gray-800 */
+    background-color: #1f2937 !important; /* original gray-800 */
 }
 
 .card img {
-    background-color: #374151; /* gray-700 fallback */
+    background-color: #374151; /* original gray-700 fallback */
 }
 
 /* Dynamic form buttons */
 .dynamic-add-btn {
-    background: #d97706;
+    background: #e2eb37;
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 0.375rem;
@@ -264,7 +247,7 @@ html {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background: linear-gradient(135deg, #FFFF99, #FF8C00, #000000);
 }
 
 .modal.active {
@@ -316,3 +299,7 @@ html {
         font-size: 1.125rem;
     }
 }
+
+/* Navigation bar background */
+
+/* Footer background */

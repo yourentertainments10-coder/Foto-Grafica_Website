@@ -114,7 +114,7 @@ function filterGallery(category) {
     items.forEach(item => {
         if (category === 'all' || item.dataset.category === category) {
             item.style.display = 'block';
-            item.classList.add('animate-fade-in');
+            item.classList.add('animate-slide-up');
         } else {
             item.style.display = 'none';
         }
@@ -207,7 +207,7 @@ const observerOptions = {
 const observer = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
+            entry.target.classList.add('animate-slide-up');
         }
     });
 }, observerOptions);

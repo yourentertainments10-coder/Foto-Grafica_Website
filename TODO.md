@@ -61,3 +61,4 @@ Update admin templates for consistency (Tailwind CSS), fix visibility issues (bl
 
 ### 10. Completion
 - [ ] All steps done; present final result.
+(psycopg2-binary==2.9.7app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')).

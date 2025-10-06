@@ -5,9 +5,12 @@ Flask-WTF==1.1.1
 Werkzeug==2.3.7
 WTForms==3.0.1
 Flask
-psycopg2-binary==2.9.7
+pymysql
 gunicorn
 SQLAlchemy
 tika
 spacy
+cryptography
+psycopg2-binary>=2.9.9
+
 
