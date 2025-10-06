@@ -10,6 +10,7 @@ import os
 import json
 from datetime import datetime
 from dotenv import load_dotenv
+from flask_migrate import Migrate
 
 load_dotenv()
 
@@ -18,12 +19,21 @@ app.config['SECRET_KEY'] = 'secretkey123'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+# Enable debug mode and detailed error logging
+app.config['DEBUG'] = True
+app.config['PROPAGATE_EXCEPTIONS'] = True
+
 # Add custom Jinja filter for from_json
 app.jinja_env.filters['from_json'] = json.loads
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
+
+# Create tables if they don't exist
+with app.app_context():
+    db.create_all()
 
 # Database Models
 class User(UserMixin, db.Model):
