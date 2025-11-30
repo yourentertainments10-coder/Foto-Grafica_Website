@@ -1,0 +1,45 @@
+# Python
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+# virtual environment
+.env
+instance/
+# SQLite DB
+*.sqlite3
+*.db
+
+# Pytest cache
+.pytest_cache/
+
+# Node
+node_modules/
+/dist
+/build
+
+# Tailwind watch/build artifacts (if you want to ignore)
+# static/css/tailwind.css
+
+# Editor and OS files
+.vscode/
+.idea/
+*.log
+*.swp
+.DS_Store
+Thumbs.db
+
+# npm
+npm-debug.log*
+
+# Python egg files
+*.egg-info/
+*.egg
+
+# coverage
+htmlcov/
+coverage.xml
+
+# other
+tempCodeRunnerFile.py

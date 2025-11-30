@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can add small project-specific Tailwind customizations here if needed */
+
+/* Import custom overrides after Tailwind so they take precedence */
+@import "../static/css/style.css";

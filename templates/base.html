@@ -8,8 +8,8 @@
     <meta name="description" content="{% block description %}Foto-Grafica - Where Creativity Meets Excellence{% endblock %}" />
     <meta name="author" content="Foto-Grafica" />
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind (compiled) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -56,6 +56,21 @@
             }
         }
     </script>
+        <!-- Fallback styles when JavaScript/Tailwind CDN is blocked or disabled -->
+        <noscript>
+            <style>
+                /* Basic readable fallback so page isn't raw unstyled HTML */
+                html, body { height: 100%; margin: 0; padding: 0; }
+                body { background: #0f172a; color: #e5e7eb; font-family: Arial, Helvetica, sans-serif; }
+                nav { background: rgba(17,24,39,0.98); border-bottom: 1px solid rgba(245,158,11,0.15); position: fixed; width: 100%; top: 0; left: 0; z-index: 50; }
+                main { padding-top: 4rem; }
+                a { color: #fbbf24; text-decoration: none; }
+                a:hover { text-decoration: underline; }
+                .hero-title { font-size: 2.5rem; font-weight: 700; color: #ffb347; }
+                .hero-subtitle { color: #cbd5e1; }
+                .btn-primary, .btn-secondary { display: inline-block; margin: .25rem; }
+            </style>
+        </noscript>
 </head>
 <body class="min-h-screen bg-gray-900 text-white">
     <!-- Fixed Navigation -->

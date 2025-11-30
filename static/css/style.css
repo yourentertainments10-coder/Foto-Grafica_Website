@@ -125,14 +125,14 @@ html {
     border-radius: 0.5rem;
     font-weight: 500;
     transition: all 0.3s ease;
-    background: linear-gradient(135deg, #FFFF99, #FF8C00, #000000);
+    background: linear-gradient(100deg, #FF8C00, #000000);
     color: #d1d5db;
     border: none;
     cursor: pointer;
 }
 
 .tab-button.active {
-    background: linear-gradient(135deg, #FFFF99, #FF8C00, #000000);
+    background: linear-gradient(100deg, #FF8C00, #000000);
     color: white;
 }
 
@@ -145,11 +145,11 @@ html {
 .form-input {
     width: 100%;
     padding: 0.75rem 1rem;
-    border: 1px solid #FF8C00;
+    border: 1px solid #000000;
     border-radius: 0.5rem;
-    background: linear-gradient(135deg, #FFFF99, #FF8C00, #000000);
-    color: white;
-    transition: all 0.3s ease;
+    /*background: linear-gradient(135deg, #0a0a0a, #000000);*/
+    color: rgb(6, 6, 6);
+    transition: all 0.1s ease;
 }
 
 .form-input:focus {
@@ -161,10 +161,10 @@ html {
 .form-textarea {
     width: 100%;
     padding: 0.75rem 1rem;
-    border: 1px solid #FF8C00;
+    border: 1px solid #000000;
     border-radius: 0.5rem;
-    background: linear-gradient(135deg, #FFFF99, #FF8C00, #000000);
-    color: white;
+    /*background: linear-gradient(135deg, #000000);*/
+    color: rgb(0, 0, 0);
     min-height: 120px;
     resize: vertical;
     transition: all 0.3s ease;

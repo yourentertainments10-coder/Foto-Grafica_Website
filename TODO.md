@@ -1,4 +1,0 @@
-- [x] Update requirements.txt to remove pymysql and ensure psycopg2-binary for PostgreSQL
-- [x] Update app.py to use DATABASE_URL environment variable and remove MySQL-specific code
-- [x] Create .env file with PostgreSQL connection string and connect to app.py
-- [x] Add Flask-Migrate for database migrations and db.create_all() on app startup to create tables in PostgreSQL
