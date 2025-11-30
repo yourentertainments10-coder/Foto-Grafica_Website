@@ -12,8 +12,9 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root%40123@localhost/foto-grafica'
-    #SQLALCHEMY_DATABASE_URL="postgresql://fotografica_user:iGbw7h5dEDq6kEP612pYS88x4zTw6Ufi@dpg-d3dl8lbe5dus73bou7p0-a/fotografica"
-    SECRET_KEY="mysecretkey"
+SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "sqlite:///fotografica_dev.db")
+    # Example of a production DATABASE_URL (do NOT commit credentials):
+    # postgresql://user:password@host:port/dbname
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev_change_me")
 class ProductionConfig(Config):
     DEBUG = False

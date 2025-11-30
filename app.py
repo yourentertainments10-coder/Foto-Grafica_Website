@@ -236,9 +236,14 @@ def forgot_password():
         if form.username.data == 'admin':
             user = User.query.filter_by(username='admin').first()
             if user:
-                user.password = generate_password_hash('admin123')
-                db.session.commit()
-                flash('Password reset successfully! New password: admin123', 'success')
+                # Only allow reset if DEFAULT_ADMIN_PASSWORD is set in environment
+                default_pwd = os.environ.get('DEFAULT_ADMIN_PASSWORD')
+                if not default_pwd:
+                    flash('Admin password reset is disabled. Set DEFAULT_ADMIN_PASSWORD in environment to enable.', 'danger')
+                else:
+                    user.password = generate_password_hash(default_pwd)
+                    db.session.commit()
+                    flash('Password reset successfully! (value taken from DEFAULT_ADMIN_PASSWORD)', 'success')
                 return redirect(url_for('login'))
             else:
                 flash('Admin user not found.', 'danger')
